@@ -1,0 +1,44 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Backend: FastAPI",
+			"type": "debugpy",
+			"request": "launch",
+			"module": "uvicorn",
+			"args": ["app.main:app", "--reload", "--port", "8000"],
+			"cwd": "${workspaceFolder}/backend",
+			"console": "integratedTerminal"
+		},
+		{
+			"name": "Frontend: Chrome",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}/frontend/src",
+			"sourceMaps": true,
+			"smartStep": true,
+			"preLaunchTask": "frontend:dev"
+		},
+		{
+			"name": "Bot: aiogram",
+			"type": "debugpy",
+			"request": "launch",
+			"program": "${workspaceFolder}/bot/main.py",
+			"cwd": "${workspaceFolder}/bot",
+			"console": "integratedTerminal"
+		}
+	],
+	"compounds": [
+		{
+			"name": "🚀 Запустить всё (Backend + Frontend)",
+			"configurations": ["Backend: FastAPI", "Frontend: Chrome", "Bot: aiogram"],
+			"stopAll": true
+		},
+		// {
+		// 	"name": "🚀 Запустить bot(aiogram)",
+		// 	"configurations": ["Bot: aiogram"],
+		// 	"stopAll": true
+		// }
+	]
+}
